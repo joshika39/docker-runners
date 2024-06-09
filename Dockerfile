@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 LABEL Author="${AUTHOR}"
 LABEL Email="${EMAIL}"
-LABEL GitHub="https://github.com/${GITHUB_PROFILE}"
+LABEL GitHub="https://github.com/${GH_PROFILE}"
 LABEL BaseImage="ubuntu:20.04"
 LABEL RunnerVersion=${RUNNER_VERSION}
 
