@@ -21,12 +21,44 @@ docker build \
   -t gh-runner:<RUNNER_VERSION> .
 ```
 
-### When running the container
+## When running the container
+
+You need to Check the `repo` and `admin:org` permissions when creating the token.
+
+### When running the container with docker
+
+```bash
+docker run -d \
+  --name gh-runner \
+  -e GH_OWNER=<GH_OWNER> \
+  -e GH_REPOSITORY=<GH_REPOSITORY> \
+  -e GH_TOKEN=<GH_TOKEN> \
+  gh-runner:<RUNNER_VERSION> -d
+```
 
 Required environment variables:
 
 - `GH_OWNER`: The owner of the repository.
 - `GH_REPOSITORY`: The repository to register the runner with.
 - `GH_TOKEN`: The token to authenticate the runner with.
+
+
+### When running the container with docker-compose
+
+```yaml
+
+name: gh-runner
+
+services:
+  gh-runner:
+    image: gh-runner:<RUNNER_VERSION>
+    container_name: gh-runner
+    restart: unless-stopped
+    environment:
+      - GH_OWNER=<GH_OWNER>
+      - GH_REPOSITORY=<GH_REPOSITORY
+      - GH_TOKEN=<GH_TOKEN>
+
+```
 
 
