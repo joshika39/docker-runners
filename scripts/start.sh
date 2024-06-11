@@ -21,7 +21,10 @@ cleanup() {
 trap 'cleanup; exit 130' INT
 trap 'cleanup; exit 143' TERM
 
-# Ensure Docker service is running
-sudo service docker start
+# Ensure Docker service is running and Docker socket has correct permissions
+while (! docker info > /dev/null 2>&1); do
+    echo "Waiting for Docker to start..."
+    sleep 1
+done
 
 ./run.sh & wait $!
